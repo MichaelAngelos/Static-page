@@ -1,0 +1,114 @@
+details {
+  margin-bottom: 1.5em;
+  /*
+  border: 1px solid #ccc;
+  border-radius: 6px;*/
+  padding: 0.5em 0em;
+  /*background: #f7f7f7; */
+}
+
+summary {
+  font-size: 1.2em;
+  font-weight: bold;
+  cursor: pointer;
+  list-style: none;
+  padding: 0.5em 1em;
+  background-color: #e0e0e0; /* light gray box */
+  border-radius: 4px 4px 4px 4px;
+  
+  margin-left: 2em; /* indentation */
+  display: inline-block; /* so the box wraps just the text */
+}
+
+.image-row-list {
+  list-style: none;
+  padding: 0;
+  margin: 1em auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  max-width: 1000px;
+}
+
+.image-row-list li {
+  display: flex;
+  justify-content: center;
+  gap: 10em;
+  align-items: flex-start;
+}
+
+.image-row-list img {
+  width: 400px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.zoomable {
+  transition: transform 0.2s ease;
+}
+
+.zoomable:hover {
+  transform: scale(1.05);
+}
+
+.zoomed {
+  transform: scale(2);
+  z-index: 10;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.8);
+  display: none; /* Hidden by default */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* The zoomed image */
+#overlay img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #000;
+  cursor: zoom-out;
+  transition: transform 0.3s ease;
+}
+
+#main-header {
+  padding-left: 40px;
+}
+
+.header-row {
+  background-color: #fbff0d;  /* example blue color */
+  padding: 15px 20px;         /* space inside the row */
+  color: white;               /* text color inside the row */
+  /* optionally, make it full width */
+  width: 100%;
+  box-sizing: border-box;     /* include padding in width */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.divider {
+  height: 2px;
+  background-color: black;
+  width: 100%;
+  margin: 0;
+}
+
+details[open] .divider {
+  display: block;
+}
