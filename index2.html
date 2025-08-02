@@ -5,22 +5,26 @@
   <title>Home - Ανακαινίσεις</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
-    /* Fullscreen background slideshow */
     body, html {
       margin: 0;
       padding: 0;
-      height: 100%;
       font-family: Arial, sans-serif;
       overflow-x: hidden;
     }
 
+    /* Hero Section with slideshow */
+    .hero {
+      position: relative;
+      height: 100vh; /* one full viewport height */
+      overflow: hidden;
+    }
+
     .slideshow {
-      position: fixed;
+      position: absolute;
       top: 0; left: 0;
       width: 100%;
       height: 100%;
       z-index: -2;
-      overflow: hidden;
     }
 
     .slideshow img {
@@ -37,7 +41,7 @@
     }
 
     .overlay {
-      position: fixed;
+      position: absolute;
       top: 0; left: 0;
       width: 100%;
       height: 100%;
@@ -45,85 +49,92 @@
       z-index: -1;
     }
 
-    /* Content sections */
-    .content {
-      position: relative;
-      z-index: 1;
+    /* Info section with white background */
+    .info-section {
+      background: white;
+      color: black;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 2em;
+      max-width: 1200px;
+      margin: auto;
       padding: 4em 2em;
-      color: white;
-      text-align: center;
     }
 
-    section {
-      background: rgba(0, 0, 0, 0.6);
+    .info-section > div {
+      flex: 1;
+      background: #f9f9f9;
       padding: 2em;
       border-radius: 10px;
-      margin: 2em auto;
-      max-width: 800px;
-    }
-
-    .map {
-      width: 100%;
-      max-width: 800px;
-      margin: auto;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
     .map img {
       width: 100%;
       height: auto;
-      border-radius: 10px;
+      border-radius: 8px;
+    }
+
+    h2 {
+      margin-top: 0;
     }
   </style>
 </head>
 <body>
-  <!-- Background Slideshow -->
-  <div class="slideshow">
-    <img src="Images/renovationsafter.jpg" class="active" alt="Slide 1">
-    <img src="Images/renovationsafter2.jpg" alt="Slide 2">
-    <img src="Images/renovationsafter3.jpg" alt="Slide 3">
-    <img src="Images/renovationsafter4.jpg" alt="Slide 4">
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="slideshow">
+      <img src="Images/renovationsafter.jpg" class="active" alt="Slide 1">
+      <img src="Images/renovationsafter2.jpg" alt="Slide 2">
+      <img src="Images/renovationsafter3.jpg" alt="Slide 3">
+      <img src="Images/renovationsafter4.jpg" alt="Slide 4">
+    </div>
+    <div class="overlay"></div>
   </div>
-  <div class="overlay"></div>
 
   <!-- Page Content -->
-  <div class="content">
-    <section id="contact">
+  <div class="info-section">
+    <div class="contact">
       <h2>Επικοινωνία</h2>
       <p>Τηλέφωνο: +30 210 1234567</p>
       <p>Email: info@anakainiseis.gr</p>
       <p>Διεύθυνση: Λεωφόρος Κηφισίας 100, Αθήνα</p>
-    </section>
+    </div>
 
-    <section id="map">
+    <div class="map">
       <h2>Περιοχές που εξυπηρετούμε</h2>
-      <div class="map">
-        <img src="Images/map.jpg" alt="Χάρτης" usemap="#service-map">
-        <map name="service-map">
-          <area shape="rect" coords="34,44,270,350" href="peristeri.html" alt="Περιστέρι">
-          <area shape="circle" coords="477,300,44" href="alimos.html" alt="Άλιμος">
-          <area shape="poly" coords="130,120,180,200,280,210,300,130" href="menidi.html" alt="Μενίδι">
-        </map>
-      </div>
-    </section>
+      <img src="Images/map.jpg" alt="Χάρτης" usemap="#service-map">
+      <map name="service-map">
+        <area shape="rect" coords="34,44,270,350" href="peristeri.html" alt="Περιστέρι">
+        <area shape="circle" coords="477,300,44" href="alimos.html" alt="Άλιμος">
+        <area shape="poly" coords="130,120,180,200,280,210,300,130" href="menidi.html" alt="Μενίδι">
+      </map>
+    </div>
   </div>
 
   <script>
     const slides = document.querySelectorAll('.slideshow img');
     let current = 0;
-    let slideshowRunning = true;
-    let timer = setInterval(nextSlide, 5000);
+    let timer;
 
     function nextSlide() {
-      if (!slideshowRunning) return;
       slides[current].classList.remove('active');
       current = (current + 1) % slides.length;
       slides[current].classList.add('active');
     }
 
-    // Pause on mouse movement
-    document.addEventListener('mousemove', () => {
+    function startSlideshow() {
       clearInterval(timer); // reset if already running
       timer = setInterval(nextSlide, 4000);
+    }
+
+    // Start slideshow
+    startSlideshow();
+
+    // On mouse move → restart the 4 second countdown
+    document.addEventListener('mousemove', () => {
+      startSlideshow();
     });
   </script>
 </body>
