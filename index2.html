@@ -71,10 +71,12 @@
     }
 
     .map img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
+
 
     h2 {
       margin-top: 0;
@@ -103,15 +105,47 @@
     </div>
 
     <div class="map">
-      <h2>Περιοχές που εξυπηρετούμε</h2>
-      <img src="Images/map.jpg" alt="Χάρτης" usemap="#service-map">
-      <map name="service-map">
-        <area shape="rect" coords="34,44,270,350" href="peristeri.html" alt="Περιστέρι">
-        <area shape="circle" coords="477,300,44" href="alimos.html" alt="Άλιμος">
-        <area shape="poly" coords="130,120,180,200,280,210,300,130" href="menidi.html" alt="Μενίδι">
-      </map>
+        <h2>Περιοχές που εξυπηρετούμε</h2>
+        <img src="Images/Athensmap.png" usemap="#image-map">
+
+        <map name="image-map">
+        <area target="" alt="Peristeri" title="Peristeri" href="javascript:void(0)"
+          onclick="showList('peristeri-list')" coords="180,128,39" shape="circle">
+        <area target="" alt="Ilioupoli" title="Ilioupoli" href="javascript:void(0)" onclick="showList('ilioupoli-list')"
+          coords="296,159,51" shape="circle">
+        <area target="" alt="Piraeus" title="Piraeus" href="testpiraeus" coords="155,455,49" shape="circle">
+        </map>
     </div>
   </div>
+
+    <details id="peristeri-list" class="region-list" style="display: none;">
+    <summary>Περιστέρι</summary>
+    <ul class="image-row-list">
+      <li>
+        <img class="zoomable" src="Images/renovationsbefore.jpg" alt="Before">
+        <img class="zoomable" src="Images/renovationsafter.jpg" alt="After">
+      </li>
+      <li>
+        <img class="zoomable" src="Images/renovationsbefore2.jpg" alt="Before">
+        <img class="zoomable" src="Images/renovationsafter2.jpg" alt="After">
+      </li>
+      <li>
+        <img class="zoomable" src="Images/renovationsbefore3.jpg" alt="Before">
+        <img class="zoomable" src="Images/renovationsafter3.jpg" alt="After">
+      </li>
+    </ul>
+  </details>
+
+    <ul id="ilioupoli-list" class="region-list" style="display: none;">
+      <li>
+        <img class="zoomable" src="Images/renovationsbefore4.jpg" alt="Before">
+        <img class="zoomable" src="Images/renovationsafter4.jpg" alt="After">
+      </li>
+      <li>
+        <img class="zoomable" src="Images/renovationsbefore5.jpg" alt="Before">
+        <img class="zoomable" src="Images/renovationsafter5.jpg" alt="After">
+      </li>
+    </ul>
 
   <script>
     const slides = document.querySelectorAll('.slideshow img');
@@ -137,5 +171,22 @@
       startSlideshow();
     });
   </script>
+
+  <script>
+  function showList(listId) {
+    // Hide all lists
+    document.querySelectorAll('.region-list').forEach(list => {
+      list.style.display = 'none';
+    });
+
+    // Show the clicked region's list
+    const listToShow = document.getElementById(listId);
+    if (listToShow) {
+      listToShow.style.display = 'block';
+      listToShow.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+</script>
+
 </body>
 </html>
