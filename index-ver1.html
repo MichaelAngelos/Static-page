@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ανακαινίσεις</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="header-row">
+    <h2>
+      <p style="color: black;">Ανακαινίσεις</p>
+    </h2>
+  </div>
+
+  <div class="divider"></div>
+  <div style="margin: 0.8em 0;"></div>
+  <details>
+    <summary>Περιστέρι</summary>
+    <ul class="image-row-list">
+      <li>
+        <img class="zoomable" src="Images/renovationsbefore.jpg" alt="Before">
+        <img class="zoomable" src="Images/renovationsafter.jpg" alt="After">
+      </li>
+      <li>
+        <img class="zoomable" src="Images/renovationsbefore2.jpg" alt="Before">
+        <img class="zoomable" src="Images/renovationsafter2.jpg" alt="After">
+      </li>
+      <li>
+        <img class="zoomable" src="Images/renovationsbefore3.jpg" alt="Before">
+        <img class="zoomable" src="Images/renovationsafter3.jpg" alt="After">
+      </li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>Άλιμος</summary>
+    <ul class="image-row-list">
+      <li>
+        <img class="zoomable" src="Images/renovationsbefore4.jpg" alt="Before">
+        <img class="zoomable" src="Images/renovationsafter4.jpg" alt="After">
+      </li>
+      <li>
+        <img class="zoomable" src="Images/renovationsbefore5.jpg" alt="Before">
+        <img class="zoomable" src="Images/renovationsafter5.jpg" alt="After">
+      </li>
+    </ul>
+  </details>
+
+    <details>
+    <summary>Μενίδι</summary>
+    <ul class="image-row-list">
+      <li>
+        <img class="zoomable" src="Images/renovationsbefore6.jpg" alt="Before">
+        <img class="zoomable" src="Images/renovationsafter6.jpg" alt="After">
+      </li>
+      <li>
+        <img class="zoomable" src="Images/renovationsbefore7.jpg" alt="Before">
+        <img class="zoomable" src="Images/renovationsafter7.jpg" alt="After">
+      </li>
+      <li>
+        <img class="zoomable" src="Images/renovationsbefore4.jpg" alt="Before">
+        <img class="zoomable" src="Images/renovationsafter4.jpg" alt="After">
+      </li>
+    </ul>
+  </details>
+
+  <div id="overlay">
+  <img src="" alt="Zoomed Image" />
+</div>
+
+  <script>
+    const overlay = document.getElementById('overlay');
+    const overlayImg = overlay.querySelector('img');
+
+    document.querySelectorAll('.zoomable').forEach(img => {
+    img.addEventListener('click', () => {
+        overlay.style.display = 'flex';      // Show overlay
+        overlayImg.src = img.src;            // Set overlay image src
+    });
+    });
+
+    // Hide overlay when clicking on the overlay or the zoomed image
+    overlay.addEventListener('click', () => {
+    overlay.style.display = 'none';
+    overlayImg.src = '';
+    });
+  </script>
+
+
+
+</body>
+</html>
